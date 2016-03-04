@@ -123,14 +123,18 @@
 double lastEvent = 0;
 
 - (void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    NSLog(@"Touch moved");
     for (UITouch* touch in touches) {
         CGFloat percentage = (touch.force / touch.maximumPossibleForce) * 100;
+        NSLog(@"Percentage force : %@", percentage);
         if (percentage >= 75) {
             // let's not flood the callback with multiple hits within the same second
             NSTimeInterval ts = touch.timestamp;
             int diff = ts - lastEvent;
             if (diff > 0) {
+                NSLog(@"Diff is ok, fired");
                 lastEvent = ts;
+
                 CGPoint coordinates = [touch locationInView:self.view];
                 NSMutableDictionary *result = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
                                                [NSString stringWithFormat:@"%d", (int)percentage]   , @"force",
