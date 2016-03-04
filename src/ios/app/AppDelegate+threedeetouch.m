@@ -7,7 +7,7 @@
 
 - (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void(^)(BOOL succeeded))completionHandler {
   if ([shortcutItem.type isEqualToString:@"forum"]){
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString: @"http://forum.celsiusheroes.com"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"http://forum.celsiusheroes.com"]];
   } else {
     NSString* jsFunction = @"ThreeDeeTouch.onHomeIconPressed";
     NSString *params = [NSString stringWithFormat:@"{'type':'%@', 'title': '%@'}", shortcutItem.type, shortcutItem.localizedTitle];
