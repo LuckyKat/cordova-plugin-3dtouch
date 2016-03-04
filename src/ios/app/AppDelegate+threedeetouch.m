@@ -6,11 +6,14 @@
 @implementation AppDelegate (threedeetouch)
 
 - (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void(^)(BOOL succeeded))completionHandler {
-
-  NSString* jsFunction = @"ThreeDeeTouch.onHomeIconPressed";
-  NSString *params = [NSString stringWithFormat:@"{'type':'%@', 'title': '%@'}", shortcutItem.type, shortcutItem.localizedTitle];
-  NSString* result = [NSString stringWithFormat:@"%@(%@)", jsFunction, params];
-  [self callJavascriptFunctionWhenAvailable:result];
+  if ([shortcutItem.type isEqualToString:@"forum"]){
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString: @"http://forum.celsiusheroes.com"]];
+  } else {
+    NSString* jsFunction = @"ThreeDeeTouch.onHomeIconPressed";
+    NSString *params = [NSString stringWithFormat:@"{'type':'%@', 'title': '%@'}", shortcutItem.type, shortcutItem.localizedTitle];
+    NSString* result = [NSString stringWithFormat:@"%@(%@)", jsFunction, params];
+    [self callJavascriptFunctionWhenAvailable:result];
+  }
 }
 
 // check every x seconds for the phone  app to be ready, or stop from glance.didDeactivate
