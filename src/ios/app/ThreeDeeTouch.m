@@ -126,7 +126,7 @@ double lastEvent = 0;
     NSLog(@"Touch moved");
     for (UITouch* touch in touches) {
         CGFloat percentage = (touch.force / touch.maximumPossibleForce) * 100;
-        NSLog(@"Percentage force : %@", percentage);
+        NSLog(@"Percentage force : %d", percentage);
         if (percentage >= 75) {
             // let's not flood the callback with multiple hits within the same second
             NSTimeInterval ts = touch.timestamp;
