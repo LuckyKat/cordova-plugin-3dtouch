@@ -149,6 +149,10 @@ double lastEvent = 0;
                 [_commandDelegate sendPluginResult:pluginResult callbackId:_callbackId];
             }
         }
+        else
+        {
+            [super touchesMoved:touches withEvent:event];
+        }
     }
 }
 @end
