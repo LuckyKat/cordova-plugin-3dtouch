@@ -23,6 +23,7 @@
 
 - (void) watchForceTouches:(CDVInvokedUrlCommand*)command {
     ForceTouchRecognizer* forceTouchRecognizer = [[ForceTouchRecognizer alloc] initWithTarget:self action:nil];
+    [forceTouchRecognizer setCancelsTouchesInView:NO];
     forceTouchRecognizer.callbackId = command.callbackId;
     forceTouchRecognizer.commandDelegate = self.commandDelegate;
     [self.webView addGestureRecognizer: forceTouchRecognizer];
@@ -150,32 +151,6 @@ double lastEvent = 0;
             }
         }
     }
-}
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-
-
-    NSLog(@"Touch started ios");
-
-
-    NSSet *allTouches = [event allTouches];
-    for (UITouch *touch in allTouches)
-    {
-
-
-    }
-
-}
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-        NSLog(@"Touch ended ios");
-
-}
-
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
-    NSLog(@"Touch cancelled ok lol");
-    [self touchesEnded:touches withEvent:event];
 }
 @end
 
