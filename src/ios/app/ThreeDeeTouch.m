@@ -149,11 +149,33 @@ double lastEvent = 0;
                 [_commandDelegate sendPluginResult:pluginResult callbackId:_callbackId];
             }
         }
-        else
-        {
-            [super touchesMoved:touches withEvent:event];
-        }
     }
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+
+
+    NSLog(@"Touch started ios");
+
+
+    NSSet *allTouches = [event allTouches];
+    for (UITouch *touch in allTouches)
+    {
+
+
+    }
+
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+        NSLog(@"Touch ended ios");
+
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+    NSLog(@"Touch cancelled ok lol");
+    [self touchesEnded:touches withEvent:event];
 }
 @end
 
