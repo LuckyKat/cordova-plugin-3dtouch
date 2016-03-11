@@ -158,7 +158,7 @@ double lastEvent = 0;
      NSLog(@"Touch ended");
      if (self.state == UIGestureRecognizerStatePossible) {
         NSLog(@"reset state");
-        [self setState:UIGestureRecognizerStateEnded];
+        self.state = UIGestureRecognizerStateEnded;
     }
 }
 @end

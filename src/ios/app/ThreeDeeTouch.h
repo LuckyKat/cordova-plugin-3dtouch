@@ -1,4 +1,5 @@
 #import <Cordova/CDVPlugin.h>
+#import <UIKit/UIGestureRecognizerSubclass.h>
 
 @interface ThreeDeeTouch : CDVPlugin
 
