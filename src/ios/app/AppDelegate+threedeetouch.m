@@ -22,16 +22,11 @@
 - (void) callJavascriptFunctionWhenAvailable:(NSString*)function {
   ThreeDeeTouch *threeDeeTouch = [self.viewController getCommandInstance:@"ThreeDeeTouch"];
   if (threeDeeTouch.initDone) {
-    NSLog(@"init done!");
-    if ([threeDeeTouch.webView respondsToSelector:@selector(stringByEvaluatingJavaScriptFromString:)]) {
+       NSLog(@"init done!");
+
       // Cordova-iOS pre-4
       NSLog(@"pre 4 os");
       [threeDeeTouch.webView performSelectorOnMainThread:@selector(stringByEvaluatingJavaScriptFromString:) withObject:function waitUntilDone:NO];
-    } else {
-      // Cordova-iOS 4+
-      NSLog(@"post 4 os");
-      [threeDeeTouch.webView performSelectorOnMainThread:@selector(evaluateJavaScript:completionHandler:) withObject:function waitUntilDone:NO];
-    }
   } else {
     NSLog(@"dispatch for later");
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 25 * NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
