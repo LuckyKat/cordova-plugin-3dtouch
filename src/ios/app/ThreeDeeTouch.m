@@ -23,7 +23,7 @@
 
 - (void) watchForceTouches:(CDVInvokedUrlCommand*)command {
     ForceTouchRecognizer* forceTouchRecognizer = [[ForceTouchRecognizer alloc] initWithTarget:self action:nil];
-    //[forceTouchRecognizer setCancelsTouchesInView:NO];
+    [forceTouchRecognizer setCancelsTouchesInView:NO];
     forceTouchRecognizer.callbackId = command.callbackId;
     forceTouchRecognizer.commandDelegate = self.commandDelegate;
     [self.webView addGestureRecognizer: forceTouchRecognizer];
