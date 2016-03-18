@@ -7,14 +7,12 @@
 
 - (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void(^)(BOOL succeeded))completionHandler {
   if ([shortcutItem.type isEqualToString:@"forumch"]){
-    NSLog(@"equal to forum ch !");
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"http://forum.celsiusheroes.com"]];
   } else {
-    NSLog(@"equal to %@",shortcutItem.type);
-    NSString* jsFunction = @"ThreeDeeTouch.onHomeIconPressed";
+    /*NSString* jsFunction = @"ThreeDeeTouch.onHomeIconPressed";
     NSString *params = [NSString stringWithFormat:@"{'type':'%@', 'title': '%@'}", shortcutItem.type, shortcutItem.localizedTitle];
     NSString* result = [NSString stringWithFormat:@"%@(%@)", jsFunction, params];
-    [self callJavascriptFunctionWhenAvailable:result];
+    [self callJavascriptFunctionWhenAvailable:result];*/
   }
 }
 
@@ -22,13 +20,8 @@
 - (void) callJavascriptFunctionWhenAvailable:(NSString*)function {
   ThreeDeeTouch *threeDeeTouch = [self.viewController getCommandInstance:@"ThreeDeeTouch"];
   if (threeDeeTouch.initDone) {
-       NSLog(@"init done!");
-
-      // Cordova-iOS pre-4
-      NSLog(@"pre 4 os");
       [threeDeeTouch.webView performSelectorOnMainThread:@selector(stringByEvaluatingJavaScriptFromString:) withObject:function waitUntilDone:NO];
   } else {
-    NSLog(@"dispatch for later");
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 25 * NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
       [self callJavascriptFunctionWhenAvailable:function];
     });
