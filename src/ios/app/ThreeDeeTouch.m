@@ -151,7 +151,7 @@ double lastEvent = 0;
         }
     }
     @catch (NSException * e) {
-        NSLog(@"Exception: %@", e);
+        // NSLog(@"Exception: %@", e);
     }
     @finally {
     }
